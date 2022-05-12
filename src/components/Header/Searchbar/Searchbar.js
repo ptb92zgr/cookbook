@@ -1,4 +1,5 @@
 import { useState } from "react"
+import PropTypes from "prop-types"
 import styled from "styled-components"
 
 const StyledSearch = styled.div`
@@ -21,6 +22,10 @@ const StyledBtn = styled.button`
 	text-transform: uppercase;
 	font-size: 18px;
 `
+
+const propTypes = {
+	onSearch: PropTypes.func.isRequired,
+}
 
 function Searchbar(props) {
 	const [term, setTerm] = useState("")
@@ -46,5 +51,7 @@ function Searchbar(props) {
 		</StyledSearch>
 	)
 }
+
+Searchbar.propTypes = propTypes
 
 export default Searchbar

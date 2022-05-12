@@ -3,6 +3,7 @@ import "./App.css"
 import Header from "./components/Header/Header"
 import Menu from "./components/Menu/Menu"
 import Dishes from "./components/Dishes/Dishes"
+import Loading from "./components/UI/Loading/Loading"
 
 class App extends Component {
 	dishes = [
@@ -23,7 +24,8 @@ class App extends Component {
 	]
 
 	state = {
-		dishes: [this.dishes],
+		dishes: [],
+		loading: true,
 	}
 
 	searchHandler(term) {
@@ -33,12 +35,26 @@ class App extends Component {
 		this.setState({ dishes })
 	}
 
+	//getting datas from backend
+
+	componentDidMount() {
+		setTimeout(() => {
+			this.setState({ dishes: this.dishes, loading: false })
+		}, 1000)
+	}
+
 	render() {
+		console.log("komponent wyrenderowany")
+
 		return (
 			<div className='App'>
 				<Header onSearch={term => this.searchHandler(term)} />
 				<Menu />
-				<Dishes dishes={this.state.dishes} />
+				{this.state.loading ? (
+					<Loading />
+				) : (
+					<Dishes dishes={this.state.dishes} />
+				)}
 			</div>
 		)
 	}

@@ -1,3 +1,4 @@
+import PropTypes from "prop-types"
 import styled from "styled-components"
 
 const StyledDish = styled.div`
@@ -6,11 +7,16 @@ const StyledDish = styled.div`
 	margin: 10px auto;
 	padding: 5px;
 	border-radius: 10px;
-
 `
 const StyledBtn = styled.button`
 	font-size: 16px;
 `
+
+const propTypes = {
+	name: PropTypes.string.isRequired,
+	ingredients: PropTypes.string.isRequired,
+	description: PropTypes.string.isRequired,
+}
 
 function Dish(props) {
 	return (
@@ -24,5 +30,7 @@ function Dish(props) {
 		</StyledDish>
 	)
 }
+
+Dish.propTypes = propTypes
 
 export default Dish
